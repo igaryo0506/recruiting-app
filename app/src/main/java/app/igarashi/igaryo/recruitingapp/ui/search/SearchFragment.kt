@@ -1,4 +1,4 @@
-package app.igarashi.igaryo.recruitingapp.ui.notifications
+package app.igarashi.igaryo.recruitingapp.ui.search
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import app.igarashi.igaryo.recruitingapp.R
 
-class NotificationsFragment : Fragment() {
+class SearchFragment : Fragment() {
 
-    private lateinit var notificationsViewModel: NotificationsViewModel
+    private lateinit var searchViewModel: SearchViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        notificationsViewModel =
-                ViewModelProvider(this).get(NotificationsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_notifications, container, false)
-        val textView: TextView = root.findViewById(R.id.text_notifications)
-        notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
+        searchViewModel =
+                ViewModelProvider(this).get(SearchViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_search, container, false)
+        val textView: TextView = root.findViewById(R.id.text_dashboard)
+        searchViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

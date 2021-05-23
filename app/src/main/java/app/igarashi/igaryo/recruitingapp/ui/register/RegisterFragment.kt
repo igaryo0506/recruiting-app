@@ -1,4 +1,4 @@
-package app.igarashi.igaryo.recruitingapp.ui.dashboard
+package app.igarashi.igaryo.recruitingapp.ui.register
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import app.igarashi.igaryo.recruitingapp.R
 
-class DashboardFragment : Fragment() {
+class RegisterFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var registerViewModel: RegisterViewModel
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-                ViewModelProvider(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
+        registerViewModel =
+                ViewModelProvider(this).get(RegisterViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_register, container, false)
+        val textView: TextView = root.findViewById(R.id.text_notifications)
+        registerViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
         return root

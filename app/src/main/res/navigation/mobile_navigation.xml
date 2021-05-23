@@ -13,13 +13,19 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="app.igarashi.igaryo.recruitingapp.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:name="app.igarashi.igaryo.recruitingapp.ui.search.SearchFragment"
+        android:label="@string/title_search"
+        tools:layout="@layout/fragment_search" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="app.igarashi.igaryo.recruitingapp.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_register"
+        android:name="app.igarashi.igaryo.recruitingapp.ui.register.RegisterFragment"
+        android:label="@string/title_register"
+        tools:layout="@layout/fragment_register" />
+
+    <fragment
+        android:id="@+id/navigation_calendar"
+        android:name="app.igarashi.igaryo.recruitingapp.ui.register.RegisterFragment"
+        android:label="@string/title_calendar"
+        tools:layout="@layout/fragment_calendar" />
 </navigation>
