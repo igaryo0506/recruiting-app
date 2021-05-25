@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "819886785682",
+    "project_id": "recruitingapp-68598",
+    "storage_bucket": "recruitingapp-68598.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:819886785682:android:1f07ee06393a5aa539924b",
+        "android_client_info": {
+          "package_name": "app.igarashi.igaryo.recruitingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "819886785682-u42g9bpjll3e67k5u3gileoq0m2vl5ml.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcJ5kgT5SMVgSabM16RSGTuibsc8q1OU8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "819886785682-u42g9bpjll3e67k5u3gileoq0m2vl5ml.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -3,29 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_calendar">
+    <fragment
+        android:id="@+id/navigation_calendar"
+        android:name="app.igarashi.igaryo.recruitingapp.fragment.CalendarFragment"
+        android:label="@string/title_calendar"
+        tools:layout="@layout/fragment_calendar" />
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="app.igarashi.igaryo.recruitingapp.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
-
-    <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="app.igarashi.igaryo.recruitingapp.ui.search.SearchFragment"
+        android:id="@+id/navigation_search"
+        android:name="app.igarashi.igaryo.recruitingapp.fragment.SearchFragment"
         android:label="@string/title_search"
         tools:layout="@layout/fragment_search" />
 
     <fragment
-        android:id="@+id/navigation_register"
-        android:name="app.igarashi.igaryo.recruitingapp.ui.register.RegisterFragment"
-        android:label="@string/title_register"
-        tools:layout="@layout/fragment_register" />
+        android:id="@+id/navigation_setting"
+        android:name="app.igarashi.igaryo.recruitingapp.fragment.SettingFragment"
+        android:label="@string/title_setting"
+        tools:layout="@layout/fragment_setting" />
 
-    <fragment
-        android:id="@+id/navigation_calendar"
-        android:name="app.igarashi.igaryo.recruitingapp.ui.register.RegisterFragment"
-        android:label="@string/title_calendar"
-        tools:layout="@layout/fragment_calendar" />
 </navigation>
