@@ -7,19 +7,19 @@
     <fragment
         android:id="@+id/navigation_calendar"
         android:name="app.igarashi.igaryo.recruitingapp.fragment.CalendarFragment"
-        android:label="@string/title_calendar"
-        tools:layout="@layout/fragment_calendar" />
+        tools:layout="@layout/fragment_calendar"
+        android:label="@string/title_calendar"/>
 
     <fragment
         android:id="@+id/navigation_search"
         android:name="app.igarashi.igaryo.recruitingapp.fragment.SearchFragment"
-        android:label="@string/title_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search"
+        android:label="@string/title_search"/>
 
     <fragment
         android:id="@+id/navigation_setting"
         android:name="app.igarashi.igaryo.recruitingapp.fragment.SettingFragment"
-        android:label="@string/title_setting"
-        tools:layout="@layout/fragment_setting" />
+        tools:layout="@layout/fragment_setting"
+        android:label="@string/title_setting"/>
 
 </navigation>

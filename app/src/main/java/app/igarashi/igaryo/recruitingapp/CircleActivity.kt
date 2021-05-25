@@ -16,13 +16,13 @@ import java.util.*
 class CircleActivity : AppCompatActivity() {
     var name:String = ""
     var content:String = ""
-    var year:Int? = null
-    var month: Int? = null
-    var date:Int? = null
-    var startHour:Int? = null
-    var startMinute:Int? = null
-    var endHour:Int? = null
-    var endMinute:Int? = null
+    var year:Int = -1
+    var month: Int = -1
+    var date:Int = -1
+    var startHour:Int = -1
+    var startMinute:Int = -1
+    var endHour:Int = -1
+    var endMinute:Int = -1
     private val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +34,7 @@ class CircleActivity : AppCompatActivity() {
             content = eventContentEditText.text.toString();
             if(checkNull()){
                 clearAll()
-                val post = Post(year!!,month!!,date!!,startHour!!,startMinute!!,endHour!!,endMinute!!)
+                val post = Post(name,content,year,month,date,startHour,startMinute,endHour,endMinute)
                 db.collection("events")
                         .add(post)
                         .addOnSuccessListener {
@@ -109,14 +109,14 @@ class CircleActivity : AppCompatActivity() {
         }else{
             eventContentEditText.background.setColorFilter(Color.parseColor("#808080"),PorterDuff.Mode.SRC_IN)
         }
-        if(year==null) {
+        if(year==-1) {
             Toast.makeText(this, "日付が指定されてないよ", Toast.LENGTH_SHORT).show()
             dateEditText.background.setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN)
             return false
         }else{
             dateEditText.background.setColorFilter(Color.parseColor("#808080"),PorterDuff.Mode.SRC_IN)
         }
-        if(startHour == null || endHour == null) {
+        if(startHour == -1 || endHour == -1) {
             Toast.makeText(this, "時刻が指定されてないよ", Toast.LENGTH_SHORT).show()
             startTimeEditText.background.setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN)
             endTimeEditText.background.setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN)
