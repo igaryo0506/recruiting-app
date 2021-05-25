@@ -2,12 +2,13 @@ package app.igarashi.igaryo.recruitingapp
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_circle.*
 import java.util.*
 
@@ -22,6 +23,7 @@ class CircleActivity : AppCompatActivity() {
     var startMinute:Int? = null
     var endHour:Int? = null
     var endMinute:Int? = null
+    private val db = Firebase.firestore
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_circle)
@@ -31,9 +33,16 @@ class CircleActivity : AppCompatActivity() {
             name = circleNameEditText.text.toString();
             content = eventContentEditText.text.toString();
             if(checkNull()){
-                Toast.makeText(this, "投稿したよ", Toast.LENGTH_SHORT).show()
                 clearAll()
-                var post = Post(year!!,month!!,date!!,startHour!!,startMinute!!,endHour!!,endMinute!!)
+                val post = Post(year!!,month!!,date!!,startHour!!,startMinute!!,endHour!!,endMinute!!)
+                db.collection("events")
+                        .add(post)
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "投稿しました", Toast.LENGTH_LONG).show()
+                        }
+                        .addOnFailureListener{
+                            Toast.makeText(this, "投稿に失敗しました", Toast.LENGTH_LONG).show()
+                        }
             }
         }
         dateEditText.setOnClickListener{
