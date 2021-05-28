@@ -6,23 +6,4 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="48dp"
-    tools:context=".MainActivity">
-
-
-    <Button
-        android:id="@+id/circleButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:layout_weight="1"
-        android:text="サークルに呼ぶ"
-        android:textSize="32sp" />
-
-    <Button
-        android:id="@+id/memberButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="サークルを探す"
-        android:textSize="32sp" />
-</LinearLayout>
+    tools:context=".MainActivity"/>
