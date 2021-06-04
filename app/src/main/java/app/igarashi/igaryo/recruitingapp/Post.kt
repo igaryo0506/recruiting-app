@@ -6,5 +6,6 @@ data class Post(
         var year:Int = 0,
         var month: Int = 0,
         var date:Int = 0,
-        var time:String = ""
+        var time:String = "",
+        var participants:MutableList<String> = mutableListOf()
 )

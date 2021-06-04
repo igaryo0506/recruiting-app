@@ -24,13 +24,11 @@ class MainActivity : AppCompatActivity() {
         auth = Firebase.auth
         val currentUser = auth.currentUser
         if(currentUser != null){
-            Log.d("xxx",currentUser.uid)
             var isPerson : Boolean? = false
             db.collection("users").document(currentUser.uid)
                     .get()
                     .addOnSuccessListener { document ->
                         isPerson = document.data?.get("isPerson")?.toString().equals("true")
-                        Log.d("xxx",isPerson.toString())
                         if(isPerson!!){
                             val toPersonActivityIntent = Intent(this,PersonActivity::class.java)
                             startActivity(toPersonActivityIntent)
