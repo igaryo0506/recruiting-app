@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
                     .get()
                     .addOnSuccessListener { document ->
                         isPerson = document.data?.get("isPerson")?.toString().equals("true")
-                        if(isPerson!!){
+                        if(!isPerson!!){
                             val toPersonActivityIntent = Intent(this,PersonActivity::class.java)
                             startActivity(toPersonActivityIntent)
                         }else{

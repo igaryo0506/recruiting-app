@@ -8,10 +8,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class PersonRecyclerViewAdapter(private val context: Context): RecyclerView.Adapter<PersonRecyclerViewAdapter.ViewHolder>() {
     private val items:MutableList<Post> = mutableListOf()
     var arr = arrayOf<String>()
+    private val db = Firebase.firestore
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
         val titleTextView: TextView = view.findViewById(R.id.titleTextView)
         val dayTextView: TextView = view.findViewById(R.id.dayTextView)

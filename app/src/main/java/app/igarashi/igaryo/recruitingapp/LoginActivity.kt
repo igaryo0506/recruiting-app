@@ -55,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
                                 Log.d(TAG, "createUserWithEmail:success")
                                 val user = auth.currentUser
                                 db.collection("users").document(user.uid)
-                                        .set(hashMapOf("isPerson" to isPerson))
+                                        .set(hashMapOf("isPerson" to isPerson,"name" to name))
                                         .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
                                         .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
 

@@ -38,11 +38,26 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
         android:text="東京大学第二体育館にて、4月18日（水）に新歓練習を行います。練習内容は各自ウォーミングアップをしたのちに5対5をします。"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timeTextView" />
+
+    <LinearLayout
+        android:id="@+id/participantsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contentTextView">
+
+        <TextView
+            android:id="@+id/participantsLabelText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="参加者一覧" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
