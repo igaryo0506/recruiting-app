@@ -49,20 +49,16 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "だめだよ", Toast.LENGTH_SHORT).show()
             }else{
                 if(isSignUp){
-                    val user = User(email,name,isPerson)
-                    auth.createUserWithEmailAndPassword(name, password)
+                    auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(this) { task ->
                             if (task.isSuccessful) {
                                 Log.d(TAG, "createUserWithEmail:success")
                                 val user = auth.currentUser
-                                db.collection("Users")
-                                    .add(user)
-                                    .addOnSuccessListener {
-                                        Log.d(TAG,"ok")
-                                    }
-                                    .addOnFailureListener{
-                                        Log.d(TAG,"ng")
-                                    }
+                                db.collection("users").document(user.uid)
+                                        .set(hashMapOf("isPerson" to isPerson))
+                                        .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
+                                        .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
+
                                 if(isPerson){
                                     val toPersonActivityIntent = Intent(this,PersonActivity::class.java)
                                     startActivity(toPersonActivityIntent)
@@ -72,8 +68,7 @@ class LoginActivity : AppCompatActivity() {
                                 }
                             } else {
                                 Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                                Toast.makeText(baseContext, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show()
+                                Toast.makeText(baseContext, "Authentication failed.",Toast.LENGTH_SHORT).show()
                             }
                         }
                 }else{

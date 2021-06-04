@@ -39,5 +39,9 @@ class GroupActivity : AppCompatActivity() {
                 }
             }
 
+        plusButton.setOnClickListener {
+            val toPostActivityIntent = Intent(this,PostActivity::class.java)
+            startActivity(toPostActivityIntent)
+        }
     }
 }

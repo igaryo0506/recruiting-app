@@ -2,28 +2,50 @@ package app.igarashi.igaryo.recruitingapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.math.log
 
 class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
+    private val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         auth = Firebase.auth
         val currentUser = auth.currentUser
-        val intent = Intent(this,GroupActivity::class.java)
-        startActivity(intent)
-//        if(currentUser != null){
-//            Toast.makeText(this, "ok", Toast.LENGTH_SHORT).show()
-//        }else{
-//            val toLoginActivityIntent = Intent(this,LoginActivity::class.java)
-//            startActivity(toLoginActivityIntent)
-//        }
+        if(currentUser != null){
+            Log.d("xxx",currentUser.uid)
+            var isPerson : Boolean? = false
+            db.collection("users").document(currentUser.uid)
+                    .get()
+                    .addOnSuccessListener { document ->
+                        isPerson = document.data?.get("isPerson")?.toString().equals("true")
+                        Log.d("xxx",isPerson.toString())
+                        if(isPerson!!){
+                            val toPersonActivityIntent = Intent(this,PersonActivity::class.java)
+                            startActivity(toPersonActivityIntent)
+                        }else{
+                            val toGroupActivityIntent = Intent(this,GroupActivity::class.java)
+                            startActivity(toGroupActivityIntent)
+                        }
+                    }
+                    .addOnFailureListener{
+                        //Log.d("xxx","failure")
+                    }
+
+        }else{
+            val toLoginActivityIntent = Intent(this,LoginActivity::class.java)
+            startActivity(toLoginActivityIntent)
+        }
     }
 }
