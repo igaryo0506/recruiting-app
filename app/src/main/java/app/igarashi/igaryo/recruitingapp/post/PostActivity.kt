@@ -86,7 +86,7 @@ class PostActivity : AppCompatActivity() {
                     }else{
                         endTime = "$hourOfDay:$minute"
                     }
-                    startTimeEditText.setText(endTime)
+                    endTimeEditText.setText(endTime)
                 },
                 0,0,true)
             timePickerDialog.show()
