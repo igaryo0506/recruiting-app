@@ -15,8 +15,6 @@
         <activity android:name=".GroupActivity" />
         <activity android:name=".PersonActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".CircleActivity" />
-        <activity android:name=".MemberActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

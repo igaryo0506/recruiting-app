@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         auth = Firebase.auth
         val currentUser = auth.currentUser
         if(currentUser != null){
-            var isPerson : Boolean? = false
+            var isPerson: Boolean?
             db.collection("users").document(currentUser.uid)
                     .get()
                     .addOnSuccessListener { document ->
