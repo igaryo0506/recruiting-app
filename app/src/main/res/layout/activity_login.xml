@@ -70,22 +70,6 @@
 
 
         <TextView
-            android:id="@+id/emailLabelText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="メールアドレス"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/emailEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:ems="10"
-            android:inputType="textPersonName" />
-
-        <TextView
             android:id="@+id/userNameLabelText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -102,6 +86,22 @@
             android:inputType="textPersonName" />
 
         <TextView
+            android:id="@+id/emailLabelText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="メールアドレス"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/emailEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:ems="10"
+            android:inputType="textEmailSubject" />
+
+        <TextView
             android:id="@+id/passwordLabelText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -115,7 +115,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPassword"
+            android:hint="半角英数字6字以上"/>
 
     </LinearLayout>
 

@@ -1,6 +1,5 @@
 package app.igarashi.igaryo.recruitingapp
 
-import android.app.DownloadManager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +9,7 @@ import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_group.*
+import kotlinx.android.synthetic.main.activity_person.*
 
 class GroupActivity : AppCompatActivity() {
     private val db = Firebase.firestore
@@ -22,15 +22,12 @@ class GroupActivity : AppCompatActivity() {
         groupRecyclerView.layoutManager = LinearLayoutManager(this)
         groupRecyclerView.adapter = adapter
 
-        Toast.makeText(this, "wow", Toast.LENGTH_SHORT).show()
-
         db.collection("events")
             .orderBy(Post::time.name, Query.Direction.DESCENDING)
             .limit(100)
             .get()
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    Toast.makeText(this, "wowow", Toast.LENGTH_SHORT).show()
                     val postList = it.result!!.toObjects(Post::class.java)
                     adapter.addAll(postList)
                     adapter.notifyDataSetChanged()
@@ -42,6 +39,11 @@ class GroupActivity : AppCompatActivity() {
         plusButton.setOnClickListener {
             val toPostActivityIntent = Intent(this,PostActivity::class.java)
             startActivity(toPostActivityIntent)
+        }
+
+        groupSettingButton.setOnClickListener {
+            val toSettingActivityIntent = Intent(this,SettingActivity::class.java)
+            startActivity(toSettingActivityIntent)
         }
     }
 }

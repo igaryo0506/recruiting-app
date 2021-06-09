@@ -1,9 +1,11 @@
 package app.igarashi.igaryo.recruitingapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import android.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -32,11 +34,14 @@ class PersonActivity : AppCompatActivity() {
                         arr += document.id
                     }
                     adapter.arr = arr
-                    Toast.makeText(this, "wowow", Toast.LENGTH_SHORT).show()
                     val postList = results.toObjects(Post::class.java)
                     adapter.addAll(postList)
                     adapter.notifyDataSetChanged()
                 }
+        personSettingButton.setOnClickListener {
+            val toSettingActivityIntent = Intent(this,SettingActivity::class.java)
+            startActivity(toSettingActivityIntent)
+        }
     }
     fun joinEvent(id:String){
         auth = Firebase.auth
@@ -51,4 +56,5 @@ class PersonActivity : AppCompatActivity() {
                 }
         Log.d("xxx","${id}に${auth.currentUser.uid}でjoinできたね")
     }
+
 }
