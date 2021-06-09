@@ -1,6 +1,7 @@
 package app.igarashi.igaryo.recruitingapp
 
 import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -27,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
         var isPerson = true
         var email = ""
         var name = ""
-        var password = "default"
+        var password = ""
         loginSubmitButton.setBackgroundColor(Color.BLUE)
 
         signInButton.setTextColor(Color.WHITE)
@@ -62,9 +63,11 @@ class LoginActivity : AppCompatActivity() {
 
                                 if(isPerson){
                                     val toPersonActivityIntent = Intent(this,PersonActivity::class.java)
+                                    toPersonActivityIntent.flags = FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                                     startActivity(toPersonActivityIntent)
                                 }else{
                                     val toGroupActivityIntent = Intent(this,GroupActivity::class.java)
+                                    toGroupActivityIntent.flags = FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                                     startActivity(toGroupActivityIntent)
                                 }
                             } else {
@@ -88,11 +91,11 @@ class LoginActivity : AppCompatActivity() {
                                         isPerson = document.data?.get("isPerson")?.toString().equals("true")
                                         if(!isPerson!!){
                                             val toPersonActivityIntent = Intent(this,PersonActivity::class.java)
-                                            toPersonActivityIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP;
+                                            toPersonActivityIntent.flags = FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                                             startActivity(toPersonActivityIntent)
                                         }else{
                                             val toGroupActivityIntent = Intent(this,GroupActivity::class.java)
-                                            toGroupActivityIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP;
+                                            toGroupActivityIntent.flags = FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                                             startActivity(toGroupActivityIntent)
                                         }
                                     }

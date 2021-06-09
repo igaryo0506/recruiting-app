@@ -24,7 +24,11 @@ class PersonActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_person)
 
-        val adapter = PersonRecyclerViewAdapter(this)
+        val adapter = PersonRecyclerViewAdapter(this,object : PersonRecyclerViewAdapter.ButtonClickListener{
+            override fun onButtonClick(position: Int) {
+                joinEvent(arr[position])
+            }
+        })
         personRecyclerView.layoutManager = LinearLayoutManager(this)
         personRecyclerView.adapter = adapter
         db.collection("events")
@@ -38,6 +42,11 @@ class PersonActivity : AppCompatActivity() {
                     adapter.addAll(postList)
                     adapter.notifyDataSetChanged()
                 }
+        db.collection("users").document(auth.currentUser.uid)
+            .get()
+            .addOnSuccessListener {
+                personUserNameTextView.text = it.data?.get("name").toString()
+            }
         personSettingButton.setOnClickListener {
             val toSettingActivityIntent = Intent(this,SettingActivity::class.java)
             startActivity(toSettingActivityIntent)
@@ -47,12 +56,13 @@ class PersonActivity : AppCompatActivity() {
         auth = Firebase.auth
         db.collection("events").document(id)
                 .get()
-                .addOnSuccessListener { it ->
-                    var post:Post = it.toObject(Post::class.java)!!
-                    var newParticipants:MutableList<String> = post?.participants
-                    newParticipants.add(auth.currentUser.uid!!)
-                    Log.d("xxx","size:${newParticipants.size}")
-                    db.collection("events").document(id).update("participants",newParticipants)
+                .addOnSuccessListener { it
+                    val post:Post = it.toObject(Post::class.java)!!
+                    val newParticipants:MutableList<String> = post.participants
+                    if (!(auth.currentUser.uid in newParticipants)){
+                        newParticipants.add(auth.currentUser.uid)
+                        db.collection("events").document(id).update("participants",newParticipants)
+                    }
                 }
         Log.d("xxx","${id}に${auth.currentUser.uid}でjoinできたね")
     }

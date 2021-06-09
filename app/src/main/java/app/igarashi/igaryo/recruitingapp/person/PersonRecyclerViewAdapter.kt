@@ -5,13 +5,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.button.MaterialButtonToggleGroup
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class PersonRecyclerViewAdapter(private val context: Context): RecyclerView.Adapter<PersonRecyclerViewAdapter.ViewHolder>() {
+class PersonRecyclerViewAdapter(private val context: Context,private val buttonClickListener:ButtonClickListener): RecyclerView.Adapter<PersonRecyclerViewAdapter.ViewHolder>() {
     private val items:MutableList<Post> = mutableListOf()
     var arr = arrayOf<String>()
     private val db = Firebase.firestore
@@ -35,9 +37,8 @@ class PersonRecyclerViewAdapter(private val context: Context): RecyclerView.Adap
         holder.timeTextView.text = item.time
         holder.contentTextView.text = item.content
         holder.joinButton.setOnClickListener {
+            buttonClickListener.onButtonClick(position)
             holder.joinButton.text = "参加登録が完了しました"
-            val pa = PersonActivity()
-            pa.joinEvent(arr[position])
         }
     }
 
@@ -48,5 +49,9 @@ class PersonRecyclerViewAdapter(private val context: Context): RecyclerView.Adap
 
     override fun getItemCount(): Int {
         return items.size
+    }
+
+    interface ButtonClickListener{
+        fun onButtonClick(position: Int)
     }
 }
