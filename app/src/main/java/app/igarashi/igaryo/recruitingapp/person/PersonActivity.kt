@@ -46,9 +46,9 @@ class PersonActivity : AppCompatActivity() {
         db.collection("users").document(auth.currentUser.uid)
             .get()
             .addOnSuccessListener {
-                 name = it.data?.get("name").toString()
+                name = it.data?.get("name").toString()
+                personUserNameTextView.text = name
             }
-        personUserNameTextView.text = name
         personSettingButton.setOnClickListener {
             val toSettingActivityIntent = Intent(this,SettingActivity::class.java)
             toSettingActivityIntent.putExtra("name",name)
@@ -63,8 +63,8 @@ class PersonActivity : AppCompatActivity() {
             .get()
             .addOnSuccessListener {
                 name = it.data?.get("name").toString()
+                personUserNameTextView.text = name
             }
-        personUserNameTextView.text = name
     }
     fun joinEvent(id:String){
         auth = Firebase.auth
