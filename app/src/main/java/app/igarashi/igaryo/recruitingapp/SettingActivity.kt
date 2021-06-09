@@ -3,6 +3,7 @@ package app.igarashi.igaryo.recruitingapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -25,6 +26,7 @@ class SettingActivity : AppCompatActivity() {
         settingChangeButton.setOnClickListener {
             val newName = settingUserNameEditText.text.toString()
             db.collection("users").document(auth.currentUser.uid).update("name",newName)
+            Toast.makeText(this, "ユーザーネームが変更されました", Toast.LENGTH_SHORT).show()
         }
         logoutButton.setOnClickListener {
             auth.signOut()
