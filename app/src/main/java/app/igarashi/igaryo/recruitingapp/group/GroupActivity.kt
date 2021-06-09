@@ -22,6 +22,8 @@ class GroupActivity : AppCompatActivity() {
         setContentView(R.layout.activity_group)
 
         auth = Firebase.auth
+
+        var name = ""
         
         val adapter = GroupRecyclerViewAdapter(this)
         groupRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -44,8 +46,9 @@ class GroupActivity : AppCompatActivity() {
         db.collection("users").document(auth.currentUser.uid)
             .get()
             .addOnSuccessListener {
-                groupUserNameTextView.text = it.data?.get("name").toString()
+                name = it.data?.get("name").toString()
             }
+        groupUserNameTextView.text = name
 
         plusButton.setOnClickListener {
             val toPostActivityIntent = Intent(this,PostActivity::class.java)
@@ -54,6 +57,7 @@ class GroupActivity : AppCompatActivity() {
 
         groupSettingButton.setOnClickListener {
             val toSettingActivityIntent = Intent(this,SettingActivity::class.java)
+            toSettingActivityIntent.putExtra("name",name)
             startActivity(toSettingActivityIntent)
         }
     }

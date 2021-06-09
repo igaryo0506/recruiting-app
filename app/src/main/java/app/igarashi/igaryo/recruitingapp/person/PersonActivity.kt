@@ -29,6 +29,7 @@ class PersonActivity : AppCompatActivity() {
                 joinEvent(arr[position])
             }
         })
+        var name = ""
         personRecyclerView.layoutManager = LinearLayoutManager(this)
         personRecyclerView.adapter = adapter
         db.collection("events")
@@ -45,18 +46,31 @@ class PersonActivity : AppCompatActivity() {
         db.collection("users").document(auth.currentUser.uid)
             .get()
             .addOnSuccessListener {
-                personUserNameTextView.text = it.data?.get("name").toString()
+                 name = it.data?.get("name").toString()
             }
+        personUserNameTextView.text = name
         personSettingButton.setOnClickListener {
             val toSettingActivityIntent = Intent(this,SettingActivity::class.java)
+            toSettingActivityIntent.putExtra("name",name)
             startActivity(toSettingActivityIntent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        var name = ""
+        db.collection("users").document(auth.currentUser.uid)
+            .get()
+            .addOnSuccessListener {
+                name = it.data?.get("name").toString()
+            }
+        personUserNameTextView.text = name
     }
     fun joinEvent(id:String){
         auth = Firebase.auth
         db.collection("events").document(id)
                 .get()
-                .addOnSuccessListener { it
+                .addOnSuccessListener {
                     val post:Post = it.toObject(Post::class.java)!!
                     val newParticipants:MutableList<String> = post.participants
                     if (!(auth.currentUser.uid in newParticipants)){
