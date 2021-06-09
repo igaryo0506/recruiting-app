@@ -3,6 +3,7 @@ package app.igarashi.igaryo.recruitingapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
@@ -47,8 +48,8 @@ class GroupActivity : AppCompatActivity() {
             .get()
             .addOnSuccessListener {
                 name = it.data?.get("name").toString()
+                groupUserNameTextView.text = name
             }
-        groupUserNameTextView.text = name
 
         plusButton.setOnClickListener {
             val toPostActivityIntent = Intent(this,PostActivity::class.java)
@@ -60,5 +61,16 @@ class GroupActivity : AppCompatActivity() {
             toSettingActivityIntent.putExtra("name",name)
             startActivity(toSettingActivityIntent)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        var name = ""
+        db.collection("users").document(auth.currentUser.uid)
+            .get()
+            .addOnSuccessListener {
+                name = it.data?.get("name").toString()
+                groupUserNameTextView.text = name
+            }
     }
 }
