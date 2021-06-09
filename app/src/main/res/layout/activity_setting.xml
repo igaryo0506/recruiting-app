@@ -35,7 +35,7 @@
             android:inputType="textPersonName" />
 
         <Button
-            android:id="@+id/settingChangeButton"
+            android:id="@+id/settingCHan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="48dp"
